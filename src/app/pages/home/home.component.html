@@ -1,0 +1,15 @@
+<h1>Sistema de tarefas</h1>
+<hr />
+<a href="/tarefa">Nova tarefa</a>
+
+<button (click)="criar()" mat-raised-button>
+  <mat-icon>add</mat-icon>
+  Criar
+</button>
+
+<ol>
+  <li *ngFor="let t of tarefas">
+    {{ t.titulo }}
+    <mat-slide-toggle [(ngModel)]="t.concluida"></mat-slide-toggle>
+  </li>
+</ol>
