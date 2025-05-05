@@ -1,2 +1,2 @@
-const firebaseConfig = {
+export const firebaseConfig = {
 };
