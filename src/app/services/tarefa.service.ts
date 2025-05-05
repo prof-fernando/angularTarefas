@@ -1,5 +1,13 @@
 import { Injectable } from '@angular/core';
 
+import {
+  Firestore,
+  collection,
+  addDoc,
+  collectionData,
+} from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+
 export interface Tarefa {
   titulo: string;
   descricao?: string;
@@ -11,10 +19,14 @@ export interface Tarefa {
 })
 export class TarefaService {
   tarefas: Tarefa[] = [];
-  constructor() {}
+  constructor(private firestore: Firestore) {}
 
   addTarefa(novaTarefa: Tarefa) {
-    this.tarefas.push(novaTarefa);
+    //this.tarefas.push(novaTarefa);
+    const ref = collection(this.firestore, 'tarefas');
+    addDoc(ref, novaTarefa).catch((erro) => {
+      console.log('erro:', erro);
+    });
   }
 
   add(tituloTarefa: string) {
@@ -23,7 +35,9 @@ export class TarefaService {
       concluida: false,
     });
   }
-  listar(): Tarefa[] {
-    return this.tarefas;
+  listar(): Observable<Tarefa[]> {
+    const ref = collection(this.firestore, 'tarefas');
+    return collectionData(ref) as Observable<Tarefa[]>;
+    // return this.tarefas;
   }
 }

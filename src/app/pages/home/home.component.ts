@@ -22,14 +22,21 @@ export class HomeComponent {
   tarefas: Tarefa[] = [];
 
   constructor(private servico: TarefaService) {
-    this.tarefas = servico.listar();
-  }
-
-  criar() {
-    //this.servico.add('FAzer um café');
-    this.servico.addTarefa({
-      titulo: 'Novo Modelo',
-      concluida: true,
+    //this.tarefas = servico.listar();
+    this.servico.listar().subscribe((dados) => {
+      this.tarefas = dados;
     });
   }
+
+  // ngAfterViewInit() {
+
+  // }
+
+  // criar() {
+  //   //this.servico.add('FAzer um café');
+  //   this.servico.addTarefa({
+  //     titulo: 'Novo Modelo',
+  //     concluida: true,
+  //   });
+  // }
 }

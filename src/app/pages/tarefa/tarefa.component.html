@@ -1,1 +1,18 @@
-<p>tarefa works!</p>
+<a href="/">Voltar</a>
+<hr />
+<mat-form-field appearance="outline">
+  <mat-label>Titulo:</mat-label>
+  <input [(ngModel)]="titulo" matInput />
+</mat-form-field>
+<mat-form-field appearance="outline">
+  <mat-label>Descrição:</mat-label>
+  <input [(ngModel)]="descricao" matInput />
+</mat-form-field>
+<div>
+  <label>Concluido? </label>
+  <mat-radio-group [(ngModel)]="concluido">
+    <mat-radio-button value="true">Sim</mat-radio-button>
+    <mat-radio-button value="false">Não</mat-radio-button>
+  </mat-radio-group>
+</div>
+<button (click)="gravar()">Salvar</button>
