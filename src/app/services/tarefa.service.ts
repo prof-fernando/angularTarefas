@@ -7,7 +7,8 @@ import {
   collectionData,
   deleteDoc,
   updateDoc,
-  doc
+  doc,
+  docData
   
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
@@ -34,9 +35,11 @@ export class TarefaService {
       // atualizacao
       // pega a tarefa especifica aseada em sua chave
       const tarefa = doc( ref, novaTarefa.id );
-      updateDoc(tarefa,{ novaTarefa});
+      updateDoc(tarefa,{ ...novaTarefa});
+      
       return Promise.resolve(novaTarefa.id);
     }else{
+      console.log(novaTarefa);
       // inserção / inclusão
       const novo = 
       await addDoc(ref, novaTarefa).catch((erro) => {
@@ -65,4 +68,12 @@ export class TarefaService {
     deleteDoc(tarefa);
   }
 
+
+  buscar(chave:string){
+    // pega a referencia da colecao
+    const ref = collection( this.firestore, 'tarefas');
+    // pega a tarefa especifica aseada em sua chave
+    const tarefa = doc( ref, chave );
+    return docData(tarefa);
+  }
 }

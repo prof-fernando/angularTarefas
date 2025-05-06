@@ -44,15 +44,13 @@ export class HomeComponent {
   }
 
 
-  // ngAfterViewInit() {
+filtrar(status:boolean): Tarefa[]{
+  
+  return  this.tarefas.filter( (t) => t.concluida == status ) ; 
+}
 
-  // }
-
-  // criar() {
-  //   //this.servico.add('FAzer um café');
-  //   this.servico.addTarefa({
-  //     titulo: 'Novo Modelo',
-  //     concluida: true,
-  //   });
-  // }
+ alteraSituacaoTarefa( tarefa: Tarefa ){
+  this.servico.addTarefa( tarefa);
+ }
+ 
 }

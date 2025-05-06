@@ -7,11 +7,32 @@
   Criar
 </a>
 
-<ol>
-  <li *ngFor="let t of tarefas">
-    {{ t.titulo }}
+<fieldset>
+  <legend>Tarefas concluidas</legend>
+  <ol>
     
-    <mat-slide-toggle [(ngModel)]="t.concluida"></mat-slide-toggle>
-    <button mat-button (click)="excluirTarefa(t.id!)"  > x </button>
-  </li>
-</ol>
+    <li *ngFor="let t of filtrar(true)">
+      {{ t.titulo }}
+      
+      <mat-slide-toggle [(ngModel)]="t.concluida"
+      (change)="alteraSituacaoTarefa(t)"
+      ></mat-slide-toggle>
+      <button mat-button (click)="excluirTarefa(t.id!)"  > x </button>
+      <a href="/tarefa/{{t.id}}">E</a>
+    </li>
+
+    <hr>
+    
+    <li *ngFor="let t of filtrar(false)">
+      {{ t.titulo }}
+      
+      <mat-slide-toggle [(ngModel)]="t.concluida"
+      (change)="alteraSituacaoTarefa(t)"
+      ></mat-slide-toggle>
+      <button mat-button (click)="excluirTarefa(t.id!)"  > x </button>
+    </li>
+   
+  </ol>
+</fieldset>
+
+
