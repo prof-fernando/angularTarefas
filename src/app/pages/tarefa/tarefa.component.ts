@@ -28,6 +28,9 @@ export class TarefaComponent {
         // carregar a tarefa do banco
         this.tarefaService.buscar(this.id).subscribe( (dados ) =>{
             console.log('data:', dados);
+            this.titulo = dados.titulo;
+            this.descricao = dados.descricao?? '';
+            this.concluido = dados.concluida;
 
         } );
       }

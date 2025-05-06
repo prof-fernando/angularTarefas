@@ -69,11 +69,11 @@ export class TarefaService {
   }
 
 
-  buscar(chave:string){
+  buscar(chave:string) : Observable<Tarefa>{
     // pega a referencia da colecao
     const ref = collection( this.firestore, 'tarefas');
     // pega a tarefa especifica aseada em sua chave
     const tarefa = doc( ref, chave );
-    return docData(tarefa);
+    return docData(tarefa) as Observable<Tarefa> ;
   }
 }
